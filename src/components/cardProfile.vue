@@ -3,7 +3,9 @@
         <div class="card">
             <div class="content-card" >
                 <img class="content-img" src="../assets/reed-richards.png" alt="bachelor" width="100%" height="100%">
-                <h2 class="content-title">Reed Richards</h2>
+                <div class="glow-title"></div>
+                <div class="content-title"><h2>Reed Richards</h2></div>
+                
             </div>
             <div class="glow" @mousemove="cardAnime(), glowAnime()" @mouseleave="moveOut()">
 
@@ -51,9 +53,10 @@
                 const rotateX = X*60;
                 const rotateY = Y*60;
                 console.log('radial-gradient(circle at'+glowX+'% '+glowY+'%, rgb(184, 196, 211), transparent)');
-                glow.style.transform = 'rotateX('+ (X - 0.5)  +'deg) rotateY('+(Y - 0.5)  +'deg)';
+                glow.style.boxShadow = -rotateX/1.6 + 'px '+ rotateY/1.6 +'px rgba(0,0,0,0.28)';
+                glow.style.transform = 'rotateX('+ rotateX + 0.5 +'deg) rotateY('+ rotateY + 0.5 +'deg)';
                 glow.style.background= 'radial-gradient(circle at '+glowY+'% '+ -glowX+'%, rgb(185, 106, 3), transparent)';
-                glow.style.boxShadow = -rotateX/1.8 + 'px '+ rotateY/1.8 +'px rgba(0,0,0,0.28)';
+                
             },
 
             moveOut(){
@@ -65,8 +68,7 @@
                 glow.style.transform = 'rotateX('+ 0  +'deg) rotateY('+ 0 +'deg)';
                 glow.style.background= 'radial-gradient(circle at '+50+'% '+ 0+'%, rgb(185, 106, 3), transparent)';
                 glow.style.boxShadow = '';
-            }
-            
+            },
             
         },
 
@@ -127,8 +129,10 @@
     margin: 0;
     text-align: center;
     padding-top: 20px;
-    
+    overflow: hidden;
 }
+
+
 
 .glow {
     border-radius: 25px;
@@ -143,4 +147,50 @@
     perspective: 500px;
 }
 
+.glow-title {
+    position: absolute;
+    top: 89%;
+    left: 20%;
+    width: 20%;
+    height: 5%;
+    animation-name: titleColor;
+    animation-duration: 30s;
+    animation-iteration-count: infinite;
+    
+    background: radial-gradient(circle at 50% 0%, rgba(185, 152, 3, 0.781), transparent);
+}
+
+@keyframes titleColor {
+    0% {
+        width: 20%;
+    }
+
+    25% {
+        left: 20%;
+        width: 65%;
+    }
+
+    40% {
+        left: 20%;
+        width: 65%;
+    }
+
+    50% {
+        left: 60%;
+        width: 20%;
+        
+    }
+
+    75%{
+        left: 65%;
+        width: 20%;
+
+    }
+
+    100% {
+        left: 20%;
+        width: 20%;
+    }
+    
+}
 </style>
