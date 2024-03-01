@@ -1,15 +1,17 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <main>
+    <cardProfile/>
+  </main>
+
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import cardProfile from './components/cardProfile.vue';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+   cardProfile,
   }
 }
 </script>
@@ -22,5 +24,14 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 </style>
