@@ -1,5 +1,6 @@
 <template>
   <main>
+    <headerPage/>
     <cardProfile/>
   </main>
 
@@ -7,11 +8,13 @@
 
 <script>
 import cardProfile from './components/cardProfile.vue';
+import headerPage from './components/headerPage.vue';
 
 export default {
   name: 'App',
   components: {
    cardProfile,
+   headerPage,
   }
 }
 </script>
@@ -23,7 +26,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 
 main {

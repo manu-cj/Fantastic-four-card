@@ -25,12 +25,12 @@
                     {
                         'name': 'Reed Richards',
                         'image': 'https://64.media.tumblr.com/36acc53f0eac3056315c5d8cb0d1c6f0/tumblr_pq81asUB4i1ueqxblo1_400.png',
-                        'color': 'rgba(0,176,255,0.6743872549019608)'
+                        'color': 'rgba(92,196,255,0.7287289915966386)'
                     },
                     {
                         'name': 'Susan Storm',
                         'image': 'https://64.media.tumblr.com/f75c5403074161aa7f5c22f7fdc6fa9d/tumblr_p8omonFaSt1trp40so1_1280.jpg',
-                        'color': 'rgba(0,255,252,0.5211659663865546)'
+                        'color': 'rgba(167,224,244,0.7287289915966386)'
                     },
 
                     {
