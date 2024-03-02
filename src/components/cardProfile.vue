@@ -1,14 +1,14 @@
 <template>
     <div id="container-card">
         <div class="card" v-for="fantastic in fourFantastic" :key="fantastic">
-            <div class="content-card" >
+            <div class="content-card"  :style="{borderColor: fantastic.color}">
                 <img class="content-img" :src="fantastic.image" alt="bachelor" width="100%" height="100%" />
-                <div class="glow-title"></div>
-                <div class="content-title"><h2>{{ fantastic.name }} </h2></div>
+                <div class="glow-title" :style="{background : 'radial-gradient(circle at 50% 0%,'+ fantastic.color +', transparent)'}"></div>
+                <div class="content-title"><h2 :style="{color : fantastic.color}">{{ fantastic.name }} </h2></div>
                 
             </div>
             <div class="glow" :style="{background : 'radial-gradient(circle at 50% 0%,'+ fantastic.color +', transparent)'}"
-             @mousemove="cardAnime(), glowAnime(fantastic.color), moveOut(fantastic.color)">
+             @mousemove="cardAnime(fantastic.color), glowAnime(fantastic.color), moveOut(fantastic.color)">
 
             </div>
         </div>
@@ -18,9 +18,6 @@
 
 <script>
 
-
-
-
     export default {
         data(){
             return {
@@ -28,18 +25,18 @@
                     {
                         'name': 'Reed Richards',
                         'image': 'https://64.media.tumblr.com/36acc53f0eac3056315c5d8cb0d1c6f0/tumblr_pq81asUB4i1ueqxblo1_400.png',
-                        'color': 'rgba(0,181,255,1)'
+                        'color': 'rgba(0,176,255,0.6743872549019608)'
                     },
                     {
-                        'name': 'Susan Richards',
+                        'name': 'Susan Storm',
                         'image': 'https://64.media.tumblr.com/f75c5403074161aa7f5c22f7fdc6fa9d/tumblr_p8omonFaSt1trp40so1_1280.jpg',
-                        'color': 'rgba(0,255,252,0.8211659663865546)'
+                        'color': 'rgba(0,255,252,0.5211659663865546)'
                     },
 
                     {
                         'name': 'Johnny Storm',
                         'image': 'https://pbs.twimg.com/profile_images/1208221160787369984/re5-Al9I_400x400.jpg',
-                        'color': 'rgba(253,187,45,1)'
+                        'color': 'rgba(255,218,0,0.4743872549019608)'
                     },
 
                     {
@@ -47,12 +44,17 @@
                         'image': 'https://i.pinimg.com/564x/f6/bc/0d/f6bc0d2bdb161b598aed1506c4408b67.jpg',
                         'color': 'rgba(173,96,66,1)'
                     },
+                    {
+                        'name': 'Victor Von Fatalis',
+                        'image': 'https://wegotthiscovered.com/wp-content/uploads/2022/05/Doctor-Doom-Fortnite-X-Marvel-1200x900.jpg',
+                        'color': 'rgba(0,154,75,0.7287289915966386)'
+                    },
                 ]
             }
         },
 
         methods: {
-            cardAnime(){
+            cardAnime(color){
                 const card = document.querySelectorAll('.card');
                 
                 for (let i = 0; i < card.length; i++) {
@@ -60,12 +62,12 @@
                     const X = event.offsetX  / card.item(i).offsetWidth - 0.5;
                     const Y = 0.5 - event.offsetY / card.item(i).offsetHeight;
 
-                    const rotateX = X*60;
-                    const rotateY = Y*60;
+                    const rotateX = X*50;
+                    const rotateY = Y*50;
 
                     card.item(i).addEventListener('mousemove', () => {
                         card[i].style.transform = 'rotateX('+ rotateX +'deg) rotateY('+rotateY+'deg)';
-                        card[i].style.boxShadow = -rotateX/1.4 + 'px '+ rotateY/1.4 +'px rgb(0, 68, 255)';
+                        card[i].style.boxShadow = -rotateX/1.4 + 'px '+ rotateY/1.4 +'px ' + color;
                         card[i].style.opacity = 1;
                     })  
                 }
@@ -81,20 +83,15 @@
 
                     let glowX = (X -0.5) * 100;
                     let glowY = (Y -0.5) * 100;
-                    const rotateX = X*60;
-                    const rotateY = Y*60;
+                    const rotateX = X*30;
+                    const rotateY = Y*30;
 
                     glow.item(i).addEventListener('mousemove', () => {
                         glow.item(i).style.boxShadow = -rotateX/1.6 + 'px '+ rotateY/1.6 +'px rgba(0,0,0,0.28)';
                         glow.item(i).style.transform = 'rotateX('+ rotateX + 0.5 +'deg) rotateY('+ rotateY + 0.5 +'deg)';
                         glow.item(i).style.background= 'radial-gradient(circle at '+ glowX+'% '+ -glowY+'%, '+ color +', transparent)';
                     })
-                    
-                    
                 }
-
-                
-                
             },
 
             moveOut(color){
@@ -108,12 +105,9 @@
                         glow[i].style.transform = 'rotateX('+ 0  +'deg) rotateY('+ 0 +'deg)';
                         glow[i].style.background= 'radial-gradient(circle at '+50+'% '+ 0+'%,'+ color +', transparent)';
                         glow[i].style.boxShadow = '';   
-                    })
-                    
-                        
+                    })    
                 }
             },
-            
         },
 
         computed: {
@@ -129,24 +123,25 @@
 <style scoped>
 
 #container-card {
-    width: 100%;
+    width: 60%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     align-content: center;
-    gap: 50px;
+    gap: 200px;
+    padding: 30px;
 }
 .card {
-    width: 20%;
+    width: 30%;
     height: 500px;
     display: flex;
     flex-direction: column;
     justify-content: start;
     perspective: 500px;
     border-radius: 25px;
-    
+    cursor: pointer;
 }
 
 .content-card {
@@ -155,7 +150,7 @@
     overflow: hidden;
     border-radius: 25px;
     transition:  all 0.15s ease-out;
-    border: 4px rgb(0, 68, 255) solid;
+    border: 4px solid;
 }
 
 .content-img{
@@ -171,6 +166,7 @@
     object-fit: cover;
     background-color: rgb(0, 89, 255);
     color: rgba(250, 235, 215, 0.952);
+    -webkit-text-stroke: 1px #fff;
     margin: 0;
     text-align: center;
     padding-top: 20px;
@@ -182,12 +178,11 @@
     border-radius: 25px;
     position: absolute;
     top: 0;
-    left: 0;
+    left: 4px;
     width: 100%;
     height: 100%;
     transition:  all 0.15s ease-out;
     mix-blend-mode: hard-light;
-    
     perspective: 500px;
 }
 
