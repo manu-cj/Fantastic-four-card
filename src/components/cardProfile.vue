@@ -7,7 +7,8 @@
                 <div class="content-title"><h2>{{ fantastic.name }} </h2></div>
                 
             </div>
-            <div class="glow" @mousemove="cardAnime(), glowAnime()" @mouseleave="moveOut()">
+            <div class="glow" :style="{background : 'radial-gradient(circle at 50% 0%,'+ fantastic.color +', transparent)'}"
+             @mousemove="cardAnime(), glowAnime(fantastic.color), moveOut(fantastic.color)">
 
             </div>
         </div>
@@ -26,21 +27,25 @@
                 fourFantastic: [
                     {
                         'name': 'Reed Richards',
-                        'image': 'https://64.media.tumblr.com/36acc53f0eac3056315c5d8cb0d1c6f0/tumblr_pq81asUB4i1ueqxblo1_400.png'
+                        'image': 'https://64.media.tumblr.com/36acc53f0eac3056315c5d8cb0d1c6f0/tumblr_pq81asUB4i1ueqxblo1_400.png',
+                        'color': 'rgba(0,181,255,1)'
                     },
                     {
                         'name': 'Susan Richards',
-                        'image': 'https://64.media.tumblr.com/f75c5403074161aa7f5c22f7fdc6fa9d/tumblr_p8omonFaSt1trp40so1_1280.jpg'
+                        'image': 'https://64.media.tumblr.com/f75c5403074161aa7f5c22f7fdc6fa9d/tumblr_p8omonFaSt1trp40so1_1280.jpg',
+                        'color': 'rgba(0,255,252,0.8211659663865546)'
                     },
 
                     {
                         'name': 'Johnny Storm',
-                        'image': 'https://pbs.twimg.com/profile_images/1208221160787369984/re5-Al9I_400x400.jpg'
+                        'image': 'https://pbs.twimg.com/profile_images/1208221160787369984/re5-Al9I_400x400.jpg',
+                        'color': 'rgba(253,187,45,1)'
                     },
 
                     {
                         'name': 'Benjamin Grimm',
-                        'image': 'https://i.pinimg.com/564x/f6/bc/0d/f6bc0d2bdb161b598aed1506c4408b67.jpg'
+                        'image': 'https://i.pinimg.com/564x/f6/bc/0d/f6bc0d2bdb161b598aed1506c4408b67.jpg',
+                        'color': 'rgba(173,96,66,1)'
                     },
                 ]
             }
@@ -67,7 +72,7 @@
                 
                 
             },
-            glowAnime(){
+            glowAnime(color){
               
                 const glow = document.querySelectorAll('.glow');
                 for (let i = 0; i < glow.length; i++) {
@@ -80,9 +85,9 @@
                     const rotateY = Y*60;
 
                     glow.item(i).addEventListener('mousemove', () => {
-                        glow[i].style.boxShadow = -rotateX/1.6 + 'px '+ rotateY/1.6 +'px rgba(0,0,0,0.28)';
-                        glow[i].style.transform = 'rotateX('+ rotateX + 0.5 +'deg) rotateY('+ rotateY + 0.5 +'deg)';
-                        glow[i].style.background= 'radial-gradient(circle at '+ glowX+'% '+ -glowY+'%, rgb(185, 106, 3), transparent)';
+                        glow.item(i).style.boxShadow = -rotateX/1.6 + 'px '+ rotateY/1.6 +'px rgba(0,0,0,0.28)';
+                        glow.item(i).style.transform = 'rotateX('+ rotateX + 0.5 +'deg) rotateY('+ rotateY + 0.5 +'deg)';
+                        glow.item(i).style.background= 'radial-gradient(circle at '+ glowX+'% '+ -glowY+'%, '+ color +', transparent)';
                     })
                     
                     
@@ -92,16 +97,20 @@
                 
             },
 
-            moveOut(){
+            moveOut(color){
                 const card = document.querySelectorAll('.card');
                 const glow = document.querySelectorAll('.glow');
 
                 for (let i = 0; i < glow.length; i++) {
+                    glow.item(i).addEventListener('mouseleave', () => {
                         card[i].style.transform = 'rotateX('+ 0 +'deg) rotateY('+0+'deg)';
                         card[i].style.boxShadow = '';
                         glow[i].style.transform = 'rotateX('+ 0  +'deg) rotateY('+ 0 +'deg)';
-                        glow[i].style.background= 'radial-gradient(circle at '+50+'% '+ 0+'%, rgb(185, 106, 3), transparent)';
-                        glow[i].style.boxShadow = '';    
+                        glow[i].style.background= 'radial-gradient(circle at '+50+'% '+ 0+'%,'+ color +', transparent)';
+                        glow[i].style.boxShadow = '';   
+                    })
+                    
+                        
                 }
             },
             
@@ -178,7 +187,7 @@
     height: 100%;
     transition:  all 0.15s ease-out;
     mix-blend-mode: hard-light;
-    background: radial-gradient(circle at 50% 0%, rgb(185, 106, 3), transparent);
+    
     perspective: 500px;
 }
 
@@ -191,8 +200,8 @@
     animation-name: titleColor;
     animation-duration: 30s;
     animation-iteration-count: infinite;
+    background: radial-gradient(circle at 50% 0%, rgb(185, 106, 3), transparent);
     
-    background: radial-gradient(circle at 50% 0%, rgba(11, 60, 194, 0.781), transparent);
 }
 
 @keyframes titleColor {
