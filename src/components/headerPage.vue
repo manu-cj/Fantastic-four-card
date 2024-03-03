@@ -28,23 +28,28 @@ header {
 
 #title-div {
     width: 50%;
+    background-color: transparent;
     display: flex;
     align-items: center;
     justify-content: center;
     align-content: space-between;
     gap: 20px;
     flex-direction: row;
-    -webkit-text-stroke: 2px #73aed4;
-    color: rgb(107, 163, 236);
+    -webkit-text-stroke: 2px #fbfdff;
+    color: rgb(62, 130, 231);
     font-size: 50px;
+    border-radius: 90%;
 }
 
 #title-div img {
-    filter : opacity(60%);
+    filter : opacity(80%);
     animation-name: flip;
     animation-duration: 8s;
     animation-delay: 5s;
     animation-iteration-count: infinite;
+    background-color: #ffffff;
+    border-radius: 100%;
+    
 }
 
 @keyframes flip {
@@ -55,6 +60,7 @@ header {
     60% {
         transform : rotateY(0deg);
     }
+    
     100% {
         transform: rotateY(360deg);
     }
