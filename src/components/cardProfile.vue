@@ -138,11 +138,10 @@ export default {
 
         carrouselNext() {
             let buttonNext = document.querySelector('#buttonNext');
+            
             if (this.carrouselIndex === 0) {
                     buttonNext.classList.add("reed");
-                    buttonNext.style.backgroundColor = '#0093E9';
-                    buttonNext.style.backgroundImage = 'linear-gradient(160deg, #0093E9 0%, #80D0C7 100%)';
-                    
+
                     buttonNext.addEventListener('mouseleave', () => {
                         buttonNext.classList.remove("reed");
                         buttonNext.style.backgroundColor = '';
@@ -234,27 +233,69 @@ export default {
     align-items: center;
     align-content: center;
     transition: 0.3s;
-    animation: reed 2s linear infinite;
-    background: tomato;
-    z-index: 0;
+    animation: rotateBorderButton 4s linear infinite;
+    overflow: hidden;
+    position: relative;
+    
+}
+@property --a {
+    syntax: '<angle>';
+        inherits: false;
+        initial-value: 0deg;
+}
+
+@keyframes rotateBorderButton {
+    0% {
+        --a: 0deg
+    }
+
+
+    100% {
+        --a: 360deg
+    }
+    
+}
+
+.reed {
+    animation-name: reed;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+    background: repeating-conic-gradient(from var(--a), #0aedf5 0%, #27bbff 5%, transparent 5%, transparent 40%, #27f8ff 50%);
+    border: none;
+}
+
+@keyframes reed {
+    0% {
+        border: 2px rgba(0, 0, 255, 0) solid;
+        --a: 0deg
+    }
+
+    25% {
+        border: 2px rgba(0, 0, 255, 0) solid;
+    }
+
+    50% {
+        border: 2px rgba(0, 0, 255, 0) solid;
+    }
+
+    75% {
+        border: 2px rgba(0, 0, 255, 0) solid;
+    }
+
+    100% {
+        border: 2px rgba(0, 0, 255, 0) solid;
+        --a: 360deg
+    }
 }
 
 #buttonNext {
-    width: 100%;
-    height: 40px;
+    width: 99%;
+    height: 97%;
     border-radius: 10px;
     cursor: pointer;
     -webkit-text-stroke: 1px #242424;
     z-index: 1;
-    color: #faf9f9;
-}
-
-@keyframes reed {
-
-    50% {
-        filter: hue-rotate(350deg);
-    }
-    
+    border: none;
 }
 
 .card {
