@@ -21,7 +21,9 @@
         </div>
 
         <div class="button" style="justify-content: end;">
+            
             <button id="buttonNext" v-if="carrouselIndex < fourFantastic.length - 1" @mouseover="carrouselNext()" @click="carrouselIndex++">Next</button>
+            <div class="border-anim"></div>
         </div>
         
     </div>
@@ -143,7 +145,6 @@ export default {
                     
                     buttonNext.addEventListener('mouseleave', () => {
                         buttonNext.classList.remove("reed");
-                        buttonNext.style.width = '60%';
                         buttonNext.style.backgroundColor = '';
                         buttonNext.style.backgroundImage = '';
                     })
@@ -226,120 +227,34 @@ export default {
 }
 
 .button {
-    width: 25%;
+    width: 15%;
+    height: 40px;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    transition: 0.3s;
+    animation: reed 2s linear infinite;
+    background: tomato;
+    z-index: 0;
 }
 
 #buttonNext {
-    width: 60%;
+    width: 100%;
     height: 40px;
     border-radius: 10px;
     cursor: pointer;
     -webkit-text-stroke: 1px #242424;
-}
-
-.reed {
-    animation-name: reed;
-    animation-duration: 4s;
+    z-index: 1;
+    color: #faf9f9;
 }
 
 @keyframes reed {
-    0% {
-        width: 40%;
+
+    50% {
+        filter: hue-rotate(350deg);
     }
-
-    50% {width: 90%;}
-
-    100% {
-        width: 60%;
-    }
-}
-
-.susan {
-    animation-name: susan;
-    animation-duration: 6s;
-    background: radial-gradient(circle at 0% 100%, rgb(68, 159, 196), transparent);
-    color: #faf9f9;
-    border: none;
-    -webkit-text-stroke: 1px #ffffff;
-}
-
-@keyframes susan {
-    0% {border-color: rgb(0, 153, 255);}
-    50% {border-color: rgb(62, 166, 235);
-        background: radial-gradient(circle at 0% 100%, rgb(137, 192, 214), transparent);}
-    100% {border-color: none;
-        background: radial-gradient(circle at 0% 100%, rgb(253, 253, 253), transparent);}
-}
-
-.johnny {
-    animation-name: johnny;
-    animation-duration: 4s;
-    animation-iteration-count: infinite;
-    border-color: rgb(255, 187, 0);
-    background-position: center;
-    background-size: 100%;
-    color: white;
-    -webkit-text-stroke: 1px #ffffff;
     
-}
-
-@keyframes johnny {
-    0% {
-        background-size: 100%;
-        background: radial-gradient(circle, rgba(244,81,0,1) 0%, rgba(255,204,92,0.7287289915966386) 100%);
-
-    }
-    25% {background-size: 95%;
-        background: radial-gradient(circle, rgba(244,81,0,1) 10%, rgba(255,204,92,0.7287289915966386) 100%);}
-
-    35% {background-size: 95%;
-        background: radial-gradient(circle, rgba(244,81,0,1) 0%, rgba(255,204,92,0.7287289915966386) 100%);}
-
-    45% {background-size: 95%;
-        background: radial-gradient(circle, rgba(244,81,0,1) 5%, rgba(255,204,92,0.7287289915966386) 100%);}
-    
-
-    50% {background-size: 100%;
-        background: radial-gradient(circle, rgba(244,81,0,1) 0%, rgba(255,204,92,0.7287289915966386) 100%);}
-
-    
-    75% {background-size: 95%;
-        background: radial-gradient(circle, rgba(244,81,0,1) 20%, rgba(255,204,92,0.7287289915966386) 100%);}
-
-    100% {background-size: 100%;
-        background: radial-gradient(circle, rgba(244,81,0,1) 0%, rgba(255,204,92,0.7287289915966386) 100%);}
-}
-
-
-.ben {
-    animation-name: ben;
-    animation-duration: 4s;
-    animation-play-state: paused 100%;
-    background-image: url('https://img.freepik.com/premium-vector/cartoon-game-texture-background-rocks-dirt-ground-surface-seamless-pattern_443949-455.jpg');
-    background-position: center;
-    background-size: 100%;
-    -webkit-text-stroke: 1px #ffffff;
-}
-
-@keyframes ben {
-    0% {opacity: 10%;
-        color: black;
-    }
-    25% {opacity:  25%;
-        color: rgb(53, 52, 52);
-    }
-    50% {opacity:  50%;
-        color: rgb(8, 8, 8);
-    }
-    75% {opacity:  75%;
-        color: rgb(204, 200, 200);
-        -webkit-text-stroke: 1px #ffffff;
-    }
-    100% {opacity: 100%;
-        color: rgb(255, 255, 255);
-        -webkit-text-stroke: 1px #ffffff;
-    }
 }
 
 .card {
