@@ -97,6 +97,9 @@ export default {
                     card[i].style.boxShadow = -rotateX / 1.4 + 'px ' + rotateY / 1.4 + 'px ' + color;
                     card[i].style.opacity = 1;
                 })
+                card.item(i).addEventListener('click', () => {
+                    this.carrouselIndex = i -1;
+                })
             }
 
         },
@@ -700,7 +703,7 @@ export default {
     gap: 50px;
     padding: 30px;
     margin-bottom: 30px;
-    border-top: none;
+    border-top: 1px rgba(255, 255, 255, 0.192) solid;
     border-top-left-radius: none;
     border-top-right-radius: none;
     border-bottom-left-radius: 30px;
