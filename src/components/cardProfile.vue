@@ -288,8 +288,45 @@ export default {
     }
 }
 
+.susan {
+    animation-name: susan;
+    animation-duration: 8s;
+    animation-iteration-count: infinite;
+    background: rgba(0, 174, 255, 0.404);
+    border: none;
+    box-shadow: 8px 8px 8px 18px rgba(3, 153, 223, 0.88);
+}
+
+@keyframes susan {
+    0% {
+        
+        border: 2px rgba(0, 0, 255, 0.025) solid;
+        --a: 0deg
+    }
+
+    25% {
+        border: 2px rgba(0, 0, 255, 0.125) solid;
+    }
+
+    50% {
+        border: 2px rgba(0, 0, 255, 0.325) solid;
+        
+        --a: -180deg
+    }
+
+    75% {
+        border: 2px rgba(0, 0, 255, 0.425) solid;
+        opacity: 20%;
+    }
+
+    100% {
+        border: 2px rgba(0, 0, 255, 0.525) solid;
+        --a: 180deg
+    }
+}
+
 #buttonNext {
-    width: 99%;
+    width: 60%;
     height: 97%;
     border-radius: 10px;
     cursor: pointer;
