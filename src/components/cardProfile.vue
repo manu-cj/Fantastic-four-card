@@ -211,8 +211,13 @@ export default {
     align-items: center;
     justify-content: space-around;
     gap: 20px;
-    padding: 30px;
-    border-radius: 30px;
+    padding-right: 30px;
+    padding-left: 30px;
+    border-bottom: none;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: none;
+    border-bottom-right-radius: none;
 }
 
 .button {
@@ -332,7 +337,7 @@ export default {
     background-color: #faf9f969;
     border: 5px rgba(33, 130, 175, 0.658) solid;
     width: 60%;
-    height: 350px;
+    height: 300px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -341,13 +346,17 @@ export default {
     align-content: center;
     gap: 50px;
     padding: 30px;
-    border-radius: 30px;
+    border-top: none;
+    border-top-left-radius: none;
+    border-top-right-radius: none;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
 }
 
 #container-card .card {
     width: 15%;
-    height: 300px;
-    font-size: smaller;
+    height: 240px;
+    font-size: 55%;
 }
 
 .card {
