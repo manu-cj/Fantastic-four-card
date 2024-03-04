@@ -1,9 +1,10 @@
 <template>
     <header>
-        <div id="title-div">
-            <h1>Fantastic </h1><img src="https://upload.wikimedia.org/wikipedia/commons/c/cd/Fantastic_Four_logo_%28blue_and_white%29.svg" width="15%"/>
-        </div>
         
+        <div id="title-div">
+            <p>Fantastic</p>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/cd/Fantastic_Four_logo_%28blue_and_white%29.svg" width="13%"/>
+        </div>
     </header>
 </template>
 
@@ -28,7 +29,7 @@ header {
 }
 
 #title-div {
-    width: 50%;
+    width: 40%;
     background-color: transparent;
     display: flex;
     align-items: center;
@@ -39,22 +40,25 @@ header {
     -webkit-text-stroke: 2px #fbfdff;
     color: rgb(62, 130, 231);
     font-size: 50px;
-    border-radius: 90%;
+    border-radius: 50px;
+    background-color: #faf9f969;
+    border: 5px rgba(33, 130, 175, 0.658) solid;
 }
 
 #title-div img {
     filter : opacity(80%);
-    animation-name: flip;
-    animation-duration: 8s;
-    animation-delay: 5s;
-    animation-iteration-count: infinite;
-    background-color: #ffffff;
     border-radius: 100%;
-    
+    border: 3px white solid;
+    background-color: rgb(254, 254, 255);
+    background-repeat: no-repeat;
+    background-size: 80%;
+    animation: flip 8s infinite;
+    background-clip: content-box;
 }
 
 @keyframes flip {
     0% {
+        background-position: -500%;
         transform : rotateY(0deg);
     }
 
@@ -63,8 +67,31 @@ header {
     }
     
     100% {
+        background-position: 500%;
         transform: rotateY(360deg);
     }
 }
+
+p {
+    position: relative;
+    font-family: Impact, sans-serif;
+    font-size: 90px;
+    letter-spacing: 2px;
+    background: linear-gradient(-45deg, rgba(244,247,247,1) 0%, rgb(48, 110, 192) 18%);
+    background-repeat: no-repeat;
+    background-size: 80%;
+    animation: reflect 8s infinite;
+    background-clip: text;
+    -webkit-text-fill-color: rgba(255, 255, 255, 0);
+  }
+  @keyframes reflect {
+    0% {
+        
+      background-position: -500%;
+    }
+    100% {
+      background-position: 500%;
+    }
+  }
 
 </style>

@@ -2,7 +2,7 @@
 <div id="carrousel-content">
     <div id="carrousel-div">
         <div class="button" style="justify-content: start;">
-            <button id="buttonPrevious" v-if="carrouselIndex > 0" @mouseover="carrouselPrevious()" @click="translatePrevious()">Previous</button>
+            <button id="buttonPrevious" v-if="carrouselIndex > 0" @mouseover="carrouselPrevious()" @click="translatePrevious()">Précédent</button>
         </div>
         <div id="cart-div">
             <div class="card">
@@ -21,7 +21,7 @@
 
         <div class="button" style="justify-content: end;">
 
-            <button id="buttonNext" v-if="carrouselIndex < fourFantastic.length - 1" @mouseover="carrouselNext()" @click="translateNext()">Next</button>
+            <button id="buttonNext" v-if="carrouselIndex < fourFantastic.length - 1" @mouseover="carrouselNext()" @click="translateNext()">Suivant</button>
             <div class="border-anim"></div>
         </div>
 
