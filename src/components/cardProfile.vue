@@ -1,11 +1,10 @@
 <template>
-
 <div id="carrousel-content">
     <div id="carrousel-div">
         <div class="button" style="justify-content: start;">
             <button id="buttonPrevious" v-if="carrouselIndex > 0" @mouseover="carrouselPrevious()" @click="carrouselIndex--">Previous</button>
         </div>
-    
+
         <div class="card">
             <div class="content-card" :style="{borderColor: fourFantastic[carrouselIndex].color}">
                 <img class="content-img" :src="fourFantastic[carrouselIndex].image" alt="bachelor" width="100%" height="100%" />
@@ -14,18 +13,17 @@
                     <h2 :style="{color : fourFantastic[carrouselIndex].color}">{{ fourFantastic[carrouselIndex].name }} </h2>
                 </div>
             </div>
-    
+
             <div class="glow" :style="{background : 'radial-gradient(circle at 50% 0%,'+ fourFantastic[carrouselIndex].color +', transparent)'}" @mousemove="cardAnime(fourFantastic[carrouselIndex].color), glowAnime(fourFantastic[carrouselIndex].color), moveOut(fourFantastic[carrouselIndex].color)">
             </div>
-    
         </div>
-    
+
         <div class="button" style="justify-content: end;">
-    
+
             <button id="buttonNext" v-if="carrouselIndex < fourFantastic.length - 1" @mouseover="carrouselNext()" @click="carrouselIndex++">Next</button>
             <div class="border-anim"></div>
         </div>
-    
+
     </div>
     <div id="container-card">
         <div class="card" v-for="fantastic in fourFantastic" :key="fantastic">
@@ -36,13 +34,12 @@
                     <h2 :style="{color : fantastic.color}">{{ fantastic.name }} </h2>
                 </div>
             </div>
-    
+
             <div class="glow" :style="{background : 'radial-gradient(circle at 50% 0%,'+ fantastic.color +', transparent)'}" @mousemove="cardAnime(fantastic.color), glowAnime(fantastic.color), moveOut(fantastic.color)">
             </div>
         </div>
     </div>
 </div>
-
 </template>
 
 <script>
@@ -116,7 +113,7 @@ export default {
 
                 glow.item(i).addEventListener('mousemove', () => {
                     glow.item(i).style.boxShadow = -rotateX / 1.6 + 'px ' + rotateY / 1.6 + 'px rgba(0,0,0,0.28)';
-                    glow.item(i).style.transform = 'rotateX(' + rotateX + 0.5 + 'deg) rotateY(' + rotateY + 0.5 + 'deg)';
+                    glow.item(i).style.transform = 'rotateX(' + rotateX + 0.3 + 'deg) rotateY(' + rotateY + 0.3 + 'deg)';
                     glow.item(i).style.background = 'radial-gradient(circle at ' + glowX + '% ' + -glowY + '%, ' + color + ', transparent)';
                 })
             }
@@ -126,8 +123,8 @@ export default {
             const card = document.querySelectorAll('.card');
             const glow = document.querySelectorAll('.glow');
 
-            for (let i = 0; i < glow.length; i++) {
-                glow.item(i).addEventListener('mouseleave', () => {
+            for (let i = 0; i < card.length; i++) {
+                card.item(i).addEventListener('mouseleave', () => {
                     card[i].style.transform = 'rotateX(' + 0 + 'deg) rotateY(' + 0 + 'deg)';
                     card[i].style.boxShadow = '';
                     glow[i].style.transform = 'rotateX(' + 0 + 'deg) rotateY(' + 0 + 'deg)';
@@ -176,10 +173,66 @@ export default {
                     buttonNext.style.backgroundImage = '';
                 })
             }
+            if (this.carrouselIndex === 4) {
+                buttonNext.classList.add("fatalis");
+
+                buttonNext.addEventListener('mouseleave', () => {
+                    buttonNext.classList.remove("fatalis");
+                    buttonNext.style.backgroundColor = '';
+                    buttonNext.style.backgroundImage = '';
+                })
+            }
 
         },
         carrouselPrevious() {
+            let buttonPrevious = document.querySelector('#buttonPrevious');
 
+            if (this.carrouselIndex === 0) {
+                buttonPrevious.classList.add("reed");
+
+                buttonPrevious.addEventListener('mouseleave', () => {
+                    buttonPrevious.classList.remove("reed");
+                    buttonPrevious.style.backgroundColor = '';
+                    buttonPrevious.style.backgroundImage = '';
+                })
+            }
+            if (this.carrouselIndex === 1) {
+                buttonPrevious.classList.add("susan");
+
+                buttonPrevious.addEventListener('mouseleave', () => {
+                    buttonPrevious.classList.remove("susan");
+                    buttonPrevious.style.backgroundColor = '';
+                    buttonPrevious.style.backgroundImage = '';
+                })
+            }
+            if (this.carrouselIndex === 2) {
+                buttonPrevious.classList.add("johnny");
+
+                buttonPrevious.addEventListener('mouseleave', () => {
+                    buttonPrevious.classList.remove("johnny");
+                    buttonPrevious.style.backgroundColor = '';
+                    buttonPrevious.style.backgroundImage = '';
+                })
+            }
+            if (this.carrouselIndex === 3) {
+                buttonPrevious.classList.add("ben");
+
+                buttonPrevious.addEventListener('mouseleave', () => {
+                    buttonPrevious.classList.remove("ben");
+                    buttonPrevious.style.backgroundColor = '';
+                    buttonPrevious.style.backgroundImage = '';
+                })
+            }
+            if (this.carrouselIndex === 4) {
+                buttonPrevious.classList.add("fatalis");
+                buttonPrevious.parentNode.style.backgroundImage = 'red';
+
+                buttonPrevious.addEventListener('mouseleave', () => {
+                    buttonPrevious.classList.remove("fatalis");
+                    buttonPrevious.style.backgroundColor = '';
+                    buttonPrevious.style.backgroundImage = '';
+                })
+            }
         }
     },
 
@@ -193,7 +246,6 @@ export default {
 </script>
 
 <style scoped>
-
 #carrousel-content {
     width: 100%;
     display: flex;
@@ -231,7 +283,6 @@ export default {
     animation: rotateBorderButton 4s linear infinite;
     overflow: hidden;
     position: relative;
-    background-color: #fff;
     border-radius: 10px;
 
 }
@@ -269,6 +320,7 @@ export default {
 
     25% {
         border: 2px rgba(0, 0, 255, 0) solid;
+        transform: skewX(20deg);
     }
 
     50% {
@@ -277,6 +329,7 @@ export default {
 
     75% {
         border: 2px rgba(0, 0, 255, 0) solid;
+        transform: skewX(-20deg);
     }
 
     100% {
@@ -322,7 +375,107 @@ export default {
     }
 }
 
-#buttonNext {
+.johnny {
+    animation-name: johnny;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    background: repeating-conic-gradient(from var(--a), #f5b60a 15%, #ff7627 100%, transparent 50%, transparent 40%);
+    border: none;
+}
+
+@keyframes johnny {
+    0% {
+        box-shadow: 8px 8px 8px 28px rgba(223, 146, 3, 0.88);
+
+    }
+
+    25% {
+        box-shadow: 12px 12px 12px 158px rgba(223, 109, 3, 0.88);
+    }
+
+    50% {
+        --a: -9000deg;
+        box-shadow: 8px 8px 8px 18px rgba(223, 146, 3, 0.88);
+    }
+
+    75% {
+        box-shadow: 15px 15px 15px 18px rgba(223, 73, 3, 0.88);
+    }
+
+    100% {
+        box-shadow: 8px 8px 8px 18px rgba(223, 146, 3, 0.88);
+        --a: -9000deg;
+    }
+}
+
+.ben {
+    animation-name: ben;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    background: repeating-conic-gradient(from var(--a), #977a29 15%, #c0754a 100%, transparent 50%, transparent 40%);
+    border: none;
+}
+
+@keyframes ben {
+    0% {
+        border: 3px burlywood ridge;
+
+    }
+
+    25% {
+        border: 5px burlywood ridge;
+        transform: rotate(-1deg);
+    }
+
+    50% {
+        --a: -9000deg;
+    }
+
+    75% {
+        border: 8px burlywood ridge;
+        transform: rotate(1deg);
+    }
+
+    100% {
+        border: 10px burlywood ridge;
+        --a: -9000deg;
+    }
+}
+
+.fatalis {
+    animation-name: fatalis;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+    background: repeating-conic-gradient(from var(--a), #03860e 15%, #029450 100%, transparent 50%, transparent 40%);
+    border: none;
+}
+
+@keyframes fatalis {
+    0% {
+        border: 3px rgba(255, 0, 157, 0.295) ridge;
+
+    }
+
+    25% {
+        border: 4px rgba(255, 0, 257, 0.295) ridge;
+    }
+
+    50% {
+        border: 6px rgba(255, 0, 157, 0.596) ridge;
+        --a: -390deg;
+    }
+
+    75% {
+        border: 4px rgba(255, 0, 157, 0.295) ridge;
+    }
+
+    100% {
+        border: 3px rgba(255, 0, 157, 0.295) ridge;
+        --a: -390deg;
+    }
+}
+
+#buttonPrevious {
     width: 100%;
     height: 97%;
     border-radius: 10px;
@@ -332,6 +485,15 @@ export default {
     border: none;
 }
 
+#buttonNext {
+    width: 100%;
+    height: 97%;
+    border-radius: 10px;
+    cursor: pointer;
+    -webkit-text-stroke: 1px #242424;
+    z-index: 1;
+    border: none;
+}
 
 #container-card {
     background-color: #faf9f969;
@@ -346,6 +508,7 @@ export default {
     align-content: center;
     gap: 50px;
     padding: 30px;
+    margin-bottom: 30px;
     border-top: none;
     border-top-left-radius: none;
     border-top-right-radius: none;
