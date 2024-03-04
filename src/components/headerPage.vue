@@ -19,8 +19,9 @@
 
 <style scoped>
 header {
+    margin: 50px;
     width: 100%;
-    height: 300px;
+    height: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;

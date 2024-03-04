@@ -1,10 +1,11 @@
 <template>
-<div id="container-card">
+
+<div id="carrousel-content">
     <div id="carrousel-div">
         <div class="button" style="justify-content: start;">
             <button id="buttonPrevious" v-if="carrouselIndex > 0" @mouseover="carrouselPrevious()" @click="carrouselIndex--">Previous</button>
         </div>
-        
+    
         <div class="card">
             <div class="content-card" :style="{borderColor: fourFantastic[carrouselIndex].color}">
                 <img class="content-img" :src="fourFantastic[carrouselIndex].image" alt="bachelor" width="100%" height="100%" />
@@ -13,35 +14,35 @@
                     <h2 :style="{color : fourFantastic[carrouselIndex].color}">{{ fourFantastic[carrouselIndex].name }} </h2>
                 </div>
             </div>
-
-            <div class="glow" :style="{background : 'radial-gradient(circle at 50% 0%,'+ fourFantastic[carrouselIndex].color +', transparent)'}" 
-                @mousemove="cardAnime(fourFantastic[carrouselIndex].color), glowAnime(fourFantastic[carrouselIndex].color), moveOut(fourFantastic[carrouselIndex].color)">
+    
+            <div class="glow" :style="{background : 'radial-gradient(circle at 50% 0%,'+ fourFantastic[carrouselIndex].color +', transparent)'}" @mousemove="cardAnime(fourFantastic[carrouselIndex].color), glowAnime(fourFantastic[carrouselIndex].color), moveOut(fourFantastic[carrouselIndex].color)">
             </div>
-
+    
         </div>
-
+    
         <div class="button" style="justify-content: end;">
-            
+    
             <button id="buttonNext" v-if="carrouselIndex < fourFantastic.length - 1" @mouseover="carrouselNext()" @click="carrouselIndex++">Next</button>
             <div class="border-anim"></div>
         </div>
-        
+    
     </div>
-
-    <div class="card" v-for="fantastic in fourFantastic" :key="fantastic">
-        <div class="content-card" :style="{borderColor: fantastic.color}">
-            <img class="content-img" :src="fantastic.image" alt="bachelor" width="100%" height="100%" />
-            <div class="glow-title" :style="{background : 'radial-gradient(circle at 50% 0%,'+ fantastic.color +', transparent)'}"></div>
-            <div class="content-title">
-                <h2 :style="{color : fantastic.color}">{{ fantastic.name }} </h2>
+    <div id="container-card">
+        <div class="card" v-for="fantastic in fourFantastic" :key="fantastic">
+            <div class="content-card" :style="{borderColor: fantastic.color}">
+                <img class="content-img" :src="fantastic.image" alt="bachelor" width="100%" height="100%" />
+                <div class="glow-title" :style="{background : 'radial-gradient(circle at 50% 0%,'+ fantastic.color +', transparent)'}"></div>
+                <div class="content-title">
+                    <h2 :style="{color : fantastic.color}">{{ fantastic.name }} </h2>
+                </div>
             </div>
-        </div>
-
-        <div class="glow" :style="{background : 'radial-gradient(circle at 50% 0%,'+ fantastic.color +', transparent)'}"
-         @mousemove="cardAnime(fantastic.color), glowAnime(fantastic.color), moveOut(fantastic.color)">
+    
+            <div class="glow" :style="{background : 'radial-gradient(circle at 50% 0%,'+ fantastic.color +', transparent)'}" @mousemove="cardAnime(fantastic.color), glowAnime(fantastic.color), moveOut(fantastic.color)">
+            </div>
         </div>
     </div>
 </div>
+
 </template>
 
 <script>
@@ -138,55 +139,46 @@ export default {
 
         carrouselNext() {
             let buttonNext = document.querySelector('#buttonNext');
-            
-            if (this.carrouselIndex === 0) {
-                    buttonNext.classList.add("reed");
 
-                    buttonNext.addEventListener('mouseleave', () => {
-                        buttonNext.classList.remove("reed");
-                        buttonNext.style.backgroundColor = '';
-                        buttonNext.style.backgroundImage = '';
-                    })
+            if (this.carrouselIndex === 0) {
+                buttonNext.classList.add("reed");
+
+                buttonNext.addEventListener('mouseleave', () => {
+                    buttonNext.classList.remove("reed");
+                    buttonNext.style.backgroundColor = '';
+                    buttonNext.style.backgroundImage = '';
+                })
             }
             if (this.carrouselIndex === 1) {
-                    buttonNext.classList.add("susan");
-                    
-                    
-                    buttonNext.addEventListener('mouseleave', () => {
-                        buttonNext.classList.remove("susan");
-                        buttonNext.style.width = '60%';
-                        buttonNext.style.backgroundColor = '';
-                        buttonNext.style.backgroundImage = '';
-                    })
+                buttonNext.classList.add("susan");
+
+                buttonNext.addEventListener('mouseleave', () => {
+                    buttonNext.classList.remove("susan");
+                    buttonNext.style.backgroundColor = '';
+                    buttonNext.style.backgroundImage = '';
+                })
             }
             if (this.carrouselIndex === 2) {
-                    buttonNext.classList.add("johnny");
-                    
-                    
-                    buttonNext.addEventListener('mouseleave', () => {
-                        buttonNext.classList.remove("johnny");
-                        buttonNext.style.width = '60%';
-                        buttonNext.style.backgroundColor = '';
-                        buttonNext.style.backgroundImage = '';
-                    })
+                buttonNext.classList.add("johnny");
+
+                buttonNext.addEventListener('mouseleave', () => {
+                    buttonNext.classList.remove("johnny");
+                    buttonNext.style.backgroundColor = '';
+                    buttonNext.style.backgroundImage = '';
+                })
             }
             if (this.carrouselIndex === 3) {
-                    buttonNext.classList.add("ben");
-                    
-                    
-                    buttonNext.addEventListener('mouseleave', () => {
-                        buttonNext.classList.remove("ben");
-                        buttonNext.style.width = '60%';
-                        buttonNext.style.backgroundColor = '';
-                        buttonNext.style.backgroundImage = '';
-                    })
+                buttonNext.classList.add("ben");
+
+                buttonNext.addEventListener('mouseleave', () => {
+                    buttonNext.classList.remove("ben");
+                    buttonNext.style.backgroundColor = '';
+                    buttonNext.style.backgroundImage = '';
+                })
             }
-            
-            
+
         },
         carrouselPrevious() {
-
-        
 
         }
     },
@@ -201,21 +193,19 @@ export default {
 </script>
 
 <style scoped>
-#container-card {
-    width: 60%;
+
+#carrousel-content {
+    width: 100%;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    align-content: center;
-    gap: 200px;
-    padding: 30px;
 }
 
 #carrousel-div {
-    width: 100%;
-    background-color: #faf9f9;
+    width: 60%;
+    height: 500px;
+    background-color: #faf9f969;
     border: 5px rgba(33, 130, 175, 0.658) solid;
     display: flex;
     align-items: center;
@@ -226,7 +216,7 @@ export default {
 }
 
 .button {
-    width: 15%;
+    width: 10%;
     height: 40px;
     display: flex;
     justify-content: center;
@@ -236,12 +226,15 @@ export default {
     animation: rotateBorderButton 4s linear infinite;
     overflow: hidden;
     position: relative;
-    
+    background-color: #fff;
+    border-radius: 10px;
+
 }
+
 @property --a {
     syntax: '<angle>';
-        inherits: false;
-        initial-value: 0deg;
+    inherits: false;
+    initial-value: 0deg;
 }
 
 @keyframes rotateBorderButton {
@@ -249,11 +242,10 @@ export default {
         --a: 0deg
     }
 
-
     100% {
         --a: 360deg
     }
-    
+
 }
 
 .reed {
@@ -299,7 +291,7 @@ export default {
 
 @keyframes susan {
     0% {
-        
+
         border: 2px rgba(0, 0, 255, 0.025) solid;
         --a: 0deg
     }
@@ -310,7 +302,7 @@ export default {
 
     50% {
         border: 2px rgba(0, 0, 255, 0.325) solid;
-        
+
         --a: -180deg
     }
 
@@ -326,7 +318,7 @@ export default {
 }
 
 #buttonNext {
-    width: 60%;
+    width: 100%;
     height: 97%;
     border-radius: 10px;
     cursor: pointer;
@@ -335,9 +327,32 @@ export default {
     border: none;
 }
 
+
+#container-card {
+    background-color: #faf9f969;
+    border: 5px rgba(33, 130, 175, 0.658) solid;
+    width: 60%;
+    height: 350px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    align-content: center;
+    gap: 50px;
+    padding: 30px;
+    border-radius: 30px;
+}
+
+#container-card .card {
+    width: 15%;
+    height: 300px;
+    font-size: smaller;
+}
+
 .card {
-    width: 30%;
-    height: 500px;
+    width: 25%;
+    height: 80%;
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -399,6 +414,10 @@ export default {
     animation-iteration-count: infinite;
     background: radial-gradient(circle at 50% 0%, rgb(185, 106, 3), transparent);
 
+}
+
+#container-card .card .glow-title {
+    top: 96%;
 }
 
 @keyframes titleColor {
