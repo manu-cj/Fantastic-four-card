@@ -2,25 +2,26 @@
 <div id="carrousel-content">
     <div id="carrousel-div">
         <div class="button" style="justify-content: start;">
-            <button id="buttonPrevious" v-if="carrouselIndex > 0" @mouseover="carrouselPrevious()" @click="carrouselIndex--">Previous</button>
+            <button id="buttonPrevious" v-if="carrouselIndex > 0" @mouseover="carrouselPrevious()" @click="translatePrevious()">Previous</button>
         </div>
-
-        <div class="card">
-            <div class="content-card" :style="{borderColor: fourFantastic[carrouselIndex].color}">
-                <img class="content-img" :src="fourFantastic[carrouselIndex].image" alt="bachelor" width="100%" height="100%" />
-                <div class="glow-title" :style="{background : 'radial-gradient(circle at 50% 0%,'+ fourFantastic[carrouselIndex].color +', transparent)'}"></div>
-                <div class="content-title">
-                    <h2 :style="{color : fourFantastic[carrouselIndex].color}">{{ fourFantastic[carrouselIndex].name }} </h2>
+        <div id="cart-div">
+            <div class="card">
+                <div class="content-card" :style="{borderColor: fourFantastic[carrouselIndex].color}">
+                    <img class="content-img" :src="fourFantastic[carrouselIndex].image" alt="bachelor" width="100%" height="100%" />
+                    <div class="glow-title" :style="{background : 'radial-gradient(circle at 50% 0%,'+ fourFantastic[carrouselIndex].color +', transparent)'}"></div>
+                    <div class="content-title">
+                        <h2 :style="{color : fourFantastic[carrouselIndex].color}">{{ fourFantastic[carrouselIndex].name }} </h2>
+                    </div>
                 </div>
-            </div>
 
-            <div class="glow" :style="{background : 'radial-gradient(circle at 50% 0%,'+ fourFantastic[carrouselIndex].color +', transparent)'}" @mousemove="cardAnime(fourFantastic[carrouselIndex].color), glowAnime(fourFantastic[carrouselIndex].color), moveOut(fourFantastic[carrouselIndex].color)">
+                <div class="glow" :style="{background : 'radial-gradient(circle at 50% 0%,'+ fourFantastic[carrouselIndex].color +', transparent)'}" @mousemove="cardAnime(fourFantastic[carrouselIndex].color), glowAnime(fourFantastic[carrouselIndex].color), moveOut(fourFantastic[carrouselIndex].color)">
+                </div>
             </div>
         </div>
 
         <div class="button" style="justify-content: end;">
 
-            <button id="buttonNext" v-if="carrouselIndex < fourFantastic.length - 1" @mouseover="carrouselNext()" @click="carrouselIndex++">Next</button>
+            <button id="buttonNext" v-if="carrouselIndex < fourFantastic.length - 1" @mouseover="carrouselNext()" @click="translateNext()">Next</button>
             <div class="border-anim"></div>
         </div>
 
@@ -233,6 +234,35 @@ export default {
                     buttonPrevious.style.backgroundImage = '';
                 })
             }
+        },
+
+        translateNext() {
+            let divCart = document.querySelector('#cart-div');
+
+            divCart.classList.add('translate-previous');
+
+            setTimeout(() => {
+                divCart.classList.remove('translate-previous');
+                divCart.classList.add('translate-next');
+                this.carrouselIndex++
+                setTimeout(() => {
+                    divCart.classList.remove('translate-next');
+                }, 1000);
+            }, 1000);
+        },
+        translatePrevious() {
+            let divCart = document.querySelector('#cart-div');
+
+            divCart.classList.add('next');
+
+            setTimeout(() => {
+                divCart.classList.remove('next');
+                divCart.classList.add('previous');
+                this.carrouselIndex--
+                setTimeout(() => {
+                    divCart.classList.remove('previous');
+                }, 1000);
+            }, 1000);
         }
     },
 
@@ -270,6 +300,167 @@ export default {
     border-top-right-radius: 30px;
     border-bottom-left-radius: none;
     border-bottom-right-radius: none;
+}
+
+#cart-div {
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+    gap: 80px;
+    flex-direction: row;
+}
+
+.translate-previous {
+    animation: translate-div-previous 2s ease 0s 1 normal forwards;
+}
+
+@keyframes translate-div-previous {
+    0% {
+        animation-timing-function: ease-in;
+        opacity: 1;
+        
+    }
+
+    38% {
+        animation-timing-function: ease-out;
+        transform: translateX(-250px);
+    }
+
+    55% {
+        opacity: 0;
+    }
+
+    100% {
+        animation-timing-function: ease-out;
+        transform: translateX(-380);
+    }
+}
+
+.translate-next {
+    animation: translate-div-next 1s ease 0s 1 normal forwards;
+}
+
+@keyframes translate-div-next {
+    0% {
+        animation-timing-function: ease-in;
+        opacity: 0;
+        transform: translateX(150px);
+    }
+
+    38% {
+        animation-timing-function: ease-out;
+        transform: translateX(70px);
+    }
+
+    55% {
+        animation-timing-function: ease-in;
+        justify-content: center;
+        opacity: 1;
+    }
+
+    72% {
+        animation-timing-function: ease-out;
+    }
+
+    81% {
+        animation-timing-function: ease-in;
+        transform: translateX(32px) rotateX(15deg);
+    }
+
+    90% {
+        animation-timing-function: ease-out;
+        transform: translateX(0);
+    }
+
+    95% {
+        animation-timing-function: ease-in;
+        transform: translateX(8px) rotateX(8deg);
+    }
+
+    100% {
+        animation-timing-function: ease-out;
+        transform: translateX(0);
+    }
+}
+
+.next{
+    animation: next 2s ease 0s 1 normal forwards;
+}
+
+@keyframes next {
+	0% {
+        animation-timing-function: ease-in;
+        opacity: 1;
+        
+    }
+
+    38% {
+        animation-timing-function: ease-out;
+        transform: translateX(250px);
+    }
+
+    55% {
+        opacity: 0;
+    }
+
+    100% {
+        animation-timing-function: ease-out;
+        transform: translateX(380);
+    }
+
+}
+
+.previous{
+    animation: previous 1s ease 0s 1 normal forwards;
+}
+
+@keyframes previous {
+    0% {
+        animation-timing-function: ease-in;
+        opacity: 0;
+        transform: translateX(-150px);
+    }
+
+    38% {
+        animation-timing-function: ease-out;
+        transform: translateX(-70px);
+    }
+
+    55% {
+        animation-timing-function: ease-in;
+        justify-content: center;
+        opacity: 1;
+    }
+
+    72% {
+        animation-timing-function: ease-out;
+    }
+
+    81% {
+        animation-timing-function: ease-in;
+        transform: translateX(-32px) rotateX(-15deg);
+    }
+
+    90% {
+        animation-timing-function: ease-out;
+        transform: translateX(0);
+    }
+
+    95% {
+        animation-timing-function: ease-in;
+        transform: translateX(-8px) rotateX(-8deg);
+    }
+
+    100% {
+        animation-timing-function: ease-out;
+        transform: translateX(0);
+    }
+
+}
+
+#cart-div .cart {
+    min-width: 500px;
+    height: 400px;
 }
 
 .button {
@@ -523,8 +714,8 @@ export default {
 }
 
 .card {
-    width: 25%;
-    height: 80%;
+    width: 300px;
+    height: 400px;
     display: flex;
     flex-direction: column;
     justify-content: start;
