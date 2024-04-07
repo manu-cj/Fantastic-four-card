@@ -2,6 +2,7 @@
   <main>
     <headerPage/>
     <cardProfile/>
+    <footerPage/>
   </main>
 
 </template>
@@ -9,12 +10,14 @@
 <script>
 import cardProfile from './components/cardProfile.vue';
 import headerPage from './components/headerPage.vue';
+import footerPage from './components/footerPage.vue';
 
 export default {
   name: 'App',
   components: {
    cardProfile,
    headerPage,
+   footerPage,
   }
 }
 </script>
