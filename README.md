@@ -1,24 +1,3 @@
-# animation-testing
+# Fantastic-Four-card
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- Projet fait avec le framework vue.js, l'objectif était de ce projet était de me remetre à niveau, en créant des card 3D rotative sur le thème des 4 fantastiques
